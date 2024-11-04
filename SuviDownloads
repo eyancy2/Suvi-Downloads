@@ -1,0 +1,17 @@
+import requests
+url = 'https://data.ngdc.noaa.gov/platforms/solar-space-observing-satellites/goes/goes16/l2/data/suvi-l2-ci094/2024/06/03/dr_suvi-l2-ci094_g16_s20240603T030000Z_e20240603T030400Z_v1-0-2.fits'
+
+
+print(url)
+def new_func(url):
+    return requests.get(url)
+
+response = new_func(url)
+file_Path = 'dr_suvi-l2-ci094_g16_s20240603T030000Z_e20240603T030400Z_v1-0-2.fits' # change this to the file name of the file -- namely "dr_suvi-l2-ci094_g16_s20240603T000000Z_e20240603T000400Z_v1-0-2.fits"
+
+if response.status_code == 200:
+    with open(file_Path, 'wb') as file:
+        file.write(response.content)
+    print('File downloaded successfully')
+else:
+    print('Failed to download file')
